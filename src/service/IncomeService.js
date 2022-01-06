@@ -1,5 +1,6 @@
 import IncomeRepository from "./../repository/IncomeRepository.js";
 import Income from "./../entity/Income.js";
+
 import * as currenciesConfig from "../config/currencies.js";
 
 class IncomeService {
@@ -56,6 +57,15 @@ class IncomeService {
     });
 
     return income;
+  }
+
+  formattedValuesToPrintTable(item) {
+    const income = new Income({
+      ...item,
+      id: Math.random(),
+    });
+
+    return income.format();
   }
 }
 

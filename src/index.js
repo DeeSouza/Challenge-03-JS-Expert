@@ -2,7 +2,7 @@ import CustomTerminal from "./terminal.js";
 import IncomeService from "./service/IncomeService.js";
 
 const VOCABULARY = {
-  STOP: "quit",
+  STOP: ["quit", "exit", ":q", "sair"],
   QUESTION:
     "Qual seu cargo e pretensão salarial em BRL? (position; expectation)\n Insira => ",
 };
@@ -14,6 +14,7 @@ const service = new IncomeService();
 
 async function mainLoop() {
   const { QUESTION } = VOCABULARY;
+
   console.info("🚀 Running...\n");
 
   try {
@@ -22,7 +23,13 @@ async function mainLoop() {
 
     if (checkCloseTerminal) return;
 
-    const valuesFormatted = service.generateIncomeFromString(outPutAnswer);
+    const valuesFormatted = await service.generateIncomeFromString(
+      outPutAnswer
+    );
+    const valuesToPrintTable =
+      service.formattedValuesToPrintTable(valuesFormatted);
+
+    terminal.updateTableWithNewPosition(valuesToPrintTable);
   } catch (error) {
     // TODO: Don't forget of handling some errors beautifully ;)
   }
@@ -32,11 +39,13 @@ async function mainLoop() {
 
 function closeTerminal(outPutAnswer) {
   const { STOP } = VOCABULARY;
-  if (outPutAnswer !== STOP) return false;
 
-  terminal.closeTerminal();
+  if (STOP.includes(outPutAnswer)) {
+    terminal.closeTerminal();
+    return true;
+  }
 
-  return true;
+  return false;
 }
 
 await mainLoop();
