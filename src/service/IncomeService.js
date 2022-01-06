@@ -50,10 +50,6 @@ class IncomeService {
       throw new AnswerErrorExpection(errorsConfig.EMPTY_STRING);
     }
 
-    if (this.checkAnswerBeenComplete(incomeString, delimiter)) {
-      throw new AnswerErrorExpection(errorsConfig.STRING_NOT_COMPLETED);
-    }
-
     if (this.checkExpectationIsNumber(expectation)) {
       throw new AnswerErrorExpection(errorsConfig.EXPECTATION_NOT_A_NUMBER);
     }
@@ -97,7 +93,7 @@ class IncomeService {
   }
 
   checkExpectationIsNumber(expectation) {
-    return isNaN(expectation);
+    return isNaN(expectation) || !expectation;
   }
 }
 

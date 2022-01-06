@@ -1,18 +1,15 @@
 import CustomTerminal from "./terminal.js";
 import IncomeService from "./service/IncomeService.js";
+import stringsConfig from "./config/strings.js";
 
 const VOCABULARY = {
   STOP: ["quit", "exit", ":q", "sair"],
-  QUESTION:
-    "\nQual seu cargo e pretensão salarial em BRL? (position; expectation)\n Insira => ",
+  QUESTION: stringsConfig.QUESTION,
 };
 
 const terminal = new CustomTerminal();
 
-terminal.showMessageTerminal(
-  "Calculadora de pretensão salarial em moedas estrangeiras.\n"
-);
-
+terminal.showMessageTerminal(stringsConfig.TITLE_APP);
 terminal.initialize();
 
 const service = new IncomeService();
