@@ -1,6 +1,6 @@
 {
   "name": "challenge03-terminal",
-  "author": "Wellington S. Almeida (WellsSA)",
+  "author": "Diego Souza",
   "version": "1.0.0",
   "description": "This is a code challenge where you are supposed to understand a bit more about the Javascript lifecycle and ECMAScript Modules implementing a functional customized Command Line Interface (CLI) with beautiful terminal outputs, understanding a bit more about internationalization on the process.",
   "license": "MIT",
