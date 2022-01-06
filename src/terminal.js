@@ -22,7 +22,7 @@ class CustomTerminal {
   }
 
   initializeInterfaceTable() {
-    const table = chalkTable(TABLE_OPTIONS, []);
+    const table = chalkTable(TABLE_OPTIONS, this.data);
     this.print = console.draft(table);
   }
 
