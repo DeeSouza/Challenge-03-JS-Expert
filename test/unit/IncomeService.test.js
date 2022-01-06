@@ -1,10 +1,10 @@
-import { describe, it, before } from 'mocha';
-import { expect } from 'chai';
-import { incomeRepositoryMock, mocks } from '../mocks/incomeRepository.mock.js';
+import { describe, it, before } from "mocha";
+import { expect } from "chai";
+import { incomeRepositoryMock, mocks } from "../mocks/incomeRepository.mock.js";
 
-import IncomeService from '../../src/service/IncomeService.js';
+import IncomeService from "../../src/service/IncomeService.js";
 
-describe('IncomeService Suite Tests', () => {
+describe("IncomeService Suite Tests", () => {
   let service = {};
   let repository = {};
 
@@ -13,38 +13,39 @@ describe('IncomeService Suite Tests', () => {
     service = new IncomeService({ incomeRepository: repository });
   });
 
-  it('should successfully return an income instance given a correct string', async () => {
+  it("should successfully return an income instance given a correct string", async () => {
     const expected = mocks.validIncome;
 
     const income = await service.generateIncomeFromString(
-      'Senior Javascript Engineer; 15000'
+      "Senior Javascript Engineer; 15000"
     );
 
     expect(income).to.be.deep.equal(expected);
   });
 
-  it('should return an error when generating an income instance from empty string', async () => {
+  it("should return an error when generating an income instance from empty string", async () => {
     const expectedErrorMessage =
-      'Position is a required field. Please make sure you are providing a position.';
+      "Position is a required field. Please make sure you are providing a position.";
 
     let errorMessage = null;
 
     try {
-      await service.generateIncomeFromString('');
+      await service.generateIncomeFromString("");
     } catch (error) {
       errorMessage = error.message;
     }
+
     expect(errorMessage).to.be.equal(expectedErrorMessage);
   });
 
-  it('should return an error when generating an income instance from invalid string', async () => {
+  it("should return an error when generating an income instance from invalid string", async () => {
     const expectedErrorMessage =
-      'A valid Expectation is required. Please note that only numbers are allowed.';
+      "A valid Expectation is required. Please note that only numbers are allowed.";
 
     let errorMessage = null;
 
     try {
-      await service.generateIncomeFromString('a;12b');
+      await service.generateIncomeFromString("a;12b");
     } catch (error) {
       errorMessage = error.message;
     }

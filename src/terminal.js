@@ -1,5 +1,6 @@
 import DraftLog from "draftlog";
 import chalkTable from "chalk-table";
+import chalk from "chalk";
 import readline from "readline";
 import terminalConfig from "./config/terminal.js";
 
@@ -45,6 +46,18 @@ class CustomTerminal {
 
   askQuestionUser(question = "") {
     return new Promise((resolve) => this.terminal.question(question, resolve));
+  }
+
+  showMessageTerminal(message, type = "info") {
+    switch (type) {
+      case "info":
+        console.log(chalk.blue(message));
+        break;
+
+      case "error":
+        console.log(chalk.red(message));
+        break;
+    }
   }
 
   closeTerminal() {
