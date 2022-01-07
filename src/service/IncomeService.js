@@ -72,7 +72,7 @@ class IncomeService {
     return income;
   }
 
-  formattedValuesToPrintTable(item) {
+  formatValuesToPrintTable(item) {
     const id = Math.random();
     const income = new Income({ id, ...item });
 

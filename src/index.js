@@ -23,13 +23,13 @@ async function mainLoop() {
 
     if (checkCloseTerminal) return;
 
-    const incomeGenerated = await service.generateIncomeFromString(
+    const generatedIncome = await service.generateIncomeFromString(
       outPutAnswer
     );
-    const valuesToPrintTable =
-      service.formattedValuesToPrintTable(incomeGenerated);
+    const formattedValuesToPrintTable =
+      service.formatValuesToPrintTable(generatedIncome);
 
-    terminal.updateTableWithNewPosition(valuesToPrintTable);
+    terminal.updateTableWithNewPosition(formattedValuesToPrintTable);
   } catch (error) {
     terminal.showMessageTerminal(error.message);
 
