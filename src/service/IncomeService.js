@@ -14,11 +14,10 @@ class IncomeService {
     const currencies = Object.entries(currenciesConfig.conversions);
     const currenciesFormatted = {};
     const currenciesValues = [];
-    const sanitizedExpectation = this.sanitizeExpectation(expectation);
+    const parsedExpectation = this.parseExpecation(expectation);
 
-    for (const [currency, language] of currencies) {
-      const value = conversions[currency] * sanitizedExpectation;
-
+    for (let [currency, language] of currencies) {
+      const value = conversions[currency] * parsedExpectation;
       currenciesValues.push({ currency, language, value });
     }
 
@@ -28,18 +27,22 @@ class IncomeService {
       });
     }
 
+    const {
+      expectation: { currency, language },
+    } = currenciesConfig;
+
     Object.assign(currenciesFormatted, {
       expectation: {
-        currency: currenciesConfig.expectation.currency,
-        language: currenciesConfig.expectation.language,
-        value: sanitizedExpectation,
+        currency,
+        language,
+        value: parsedExpectation,
       },
     });
 
     return currenciesFormatted;
   }
 
-  sanitizeExpectation(expectation) {
+  parseExpecation(expectation) {
     return parseInt(expectation);
   }
 
@@ -70,10 +73,8 @@ class IncomeService {
   }
 
   formattedValuesToPrintTable(item) {
-    const income = new Income({
-      ...item,
-      id: Math.random(),
-    });
+    const id = Math.random();
+    const income = new Income({ id, ...item });
 
     return income.format();
   }

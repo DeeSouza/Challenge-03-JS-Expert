@@ -61,6 +61,7 @@ class CustomTerminal {
   }
 
   closeTerminal() {
+    this.showMessageTerminal("Obrigado por usar nossa calculadora.");
     this.terminal.close();
   }
 }
