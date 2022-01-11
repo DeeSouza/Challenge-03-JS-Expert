@@ -73,7 +73,24 @@ class IncomeService {
     return income;
   }
 
-  formatValuesToPrintTable = (item) => item.format();
+  formatValuesToPrintTable = (data) => {
+    const itemFormatted = data.format();
+    const itemLineTableFormatted = this.formatLineToTable(itemFormatted);
+
+    return itemLineTableFormatted;
+  };
+
+  formatLineToTable = (data) => {
+    const lineFormatted = {
+      ...data,
+      expectation: data.expectation.value,
+      conversion01: data.conversion01.value,
+      conversion02: data.conversion02.value,
+      conversion03: data.conversion03.value,
+    };
+
+    return lineFormatted;
+  };
 
   checkAnswerEmpty(text) {
     return !text || text.length === 0;

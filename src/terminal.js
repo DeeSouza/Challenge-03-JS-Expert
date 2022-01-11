@@ -27,21 +27,8 @@ class CustomTerminal {
     this.print = console.draft(table);
   }
 
-  updateTableWithNewPosition({
-    position,
-    expectation,
-    conversion01,
-    conversion02,
-    conversion03,
-  }) {
-    this.data.push({
-      position,
-      expectation: expectation.value,
-      conversion01: conversion01.value,
-      conversion02: conversion02.value,
-      conversion03: conversion03.value,
-    });
-
+  updateTableWithNewPosition(item) {
+    this.data.push(item);
     this.generateInterfaceTable();
   }
 
@@ -50,15 +37,12 @@ class CustomTerminal {
   }
 
   showMessageTerminal(message, type = "info") {
-    switch (type) {
-      case "info":
-        console.log(chalk.blue(message));
-        break;
+    const typesMessage = {
+      info: chalk.blue(message),
+      error: chalk.red(message),
+    };
 
-      case "error":
-        console.log(chalk.red(message));
-        break;
-    }
+    return console.log(typesMessage[type]);
   }
 
   closeTerminal() {
