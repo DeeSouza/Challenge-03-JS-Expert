@@ -3,6 +3,7 @@ import chalkTable from "chalk-table";
 import chalk from "chalk";
 import readline from "readline";
 import terminalConfig from "./config/terminal.js";
+import stringsConfig from "./config/strings.js";
 
 const TABLE_OPTIONS = terminalConfig.table;
 
@@ -61,7 +62,7 @@ class CustomTerminal {
   }
 
   closeTerminal() {
-    this.showMessageTerminal("\nObrigado por usar nossa calculadora.\n\n");
+    this.showMessageTerminal(stringsConfig.THANKS);
     this.terminal.close();
   }
 }

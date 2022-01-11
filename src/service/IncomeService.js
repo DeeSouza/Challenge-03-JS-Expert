@@ -64,6 +64,7 @@ class IncomeService {
     );
 
     const income = new Income({
+      id: Math.random(),
       position,
       expectation,
       ...conversionsFormatted,
@@ -72,12 +73,7 @@ class IncomeService {
     return income;
   }
 
-  formatValuesToPrintTable(item) {
-    const id = Math.random();
-    const income = new Income({ id, ...item });
-
-    return income.format();
-  }
+  formatValuesToPrintTable = (item) => item.format();
 
   checkAnswerEmpty(text) {
     return !text || text.length === 0;
