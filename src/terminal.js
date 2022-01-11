@@ -2,6 +2,7 @@ import DraftLog from "draftlog";
 import chalkTable from "chalk-table";
 import chalk from "chalk";
 import readline from "readline";
+
 import terminalConfig from "./config/terminal.js";
 import stringsConfig from "./config/strings.js";
 

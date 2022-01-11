@@ -69,7 +69,6 @@ class IncomeService {
     );
 
     const income = new Income({
-      id: Math.random(),
       position,
       expectation,
       ...conversionsFormatted,
