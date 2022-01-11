@@ -2,6 +2,11 @@ import IncomeRepository from "./../repository/IncomeRepository.js";
 import Income from "./../entity/Income.js";
 import AnswerErrorExpection from "../exceptions/AnswerErrorExpection.js";
 
+import {
+  checkAnswerEmpty,
+  checkExpectationIsNumber,
+} from "../validations/index.js";
+
 import * as currenciesConfig from "../config/currencies.js";
 import errorsConfig from "../config/errors.js";
 
@@ -49,11 +54,11 @@ class IncomeService {
   async generateIncomeFromString(incomeString, delimiter = ";") {
     const [position, expectation] = incomeString.split(delimiter);
 
-    if (this.checkAnswerEmpty(incomeString)) {
+    if (checkAnswerEmpty(incomeString)) {
       throw new AnswerErrorExpection(errorsConfig.EMPTY_STRING);
     }
 
-    if (this.checkExpectationIsNumber(expectation)) {
+    if (checkExpectationIsNumber(expectation)) {
       throw new AnswerErrorExpection(errorsConfig.EXPECTATION_NOT_A_NUMBER);
     }
 
@@ -91,24 +96,6 @@ class IncomeService {
 
     return lineFormatted;
   };
-
-  checkAnswerEmpty(text) {
-    return !text || text.length === 0;
-  }
-
-  checkAnswerBeenComplete(text, delimiter) {
-    const checkPositions = text.split(delimiter);
-    if (checkPositions.length < 2) return true;
-
-    const expectationIsEmpty = this.checkAnswerEmpty(checkPositions[1]);
-    if (expectationIsEmpty) return true;
-
-    return false;
-  }
-
-  checkExpectationIsNumber(expectation) {
-    return isNaN(expectation) || !expectation;
-  }
 }
 
 export default IncomeService;
