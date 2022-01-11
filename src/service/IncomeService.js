@@ -14,7 +14,7 @@ class IncomeService {
     const currencies = Object.entries(currenciesConfig.conversions);
     const currenciesFormatted = {};
     const currenciesValues = [];
-    const parsedExpectation = this.parseExpecation(expectation);
+    const parsedExpectation = this.parseExpectation(expectation);
 
     for (let [currency, language] of currencies) {
       const value = conversions[currency] * parsedExpectation;
@@ -42,7 +42,7 @@ class IncomeService {
     return currenciesFormatted;
   }
 
-  parseExpecation(expectation) {
+  parseExpectation(expectation) {
     return parseInt(expectation);
   }
 
